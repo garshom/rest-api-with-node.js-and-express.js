@@ -1,0 +1,14 @@
+module.exports={
+    "port":9600,
+    "appEndpoint":"http://localhost:9600/app",
+    "apiEndpoint":"http://localhost:9600/api/endpoint",
+    "jwt_secret_key":"Sup3r!!Z0mb13T009",
+    "jwt_expiration_in_seconds":36000,
+    "enviroment":"dev",
+    "permissionLevels":{
+        "NORMAL_USER":1,
+        "API_USER":400,
+        "API_ADMIN":2056,
+        "API_SUPER":3056
+    }
+}

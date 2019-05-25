@@ -1,0 +1,34 @@
+{
+  "name": "rest-api-with-node.js-and-express",
+  "version": "1.0.0",
+  "description": "REST API with Node.js and Express.js ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garshom/rest-api-with-node.js-and-express.js.git"
+  },
+  "keywords": [
+    "REST API",
+    "Node.JS",
+    "Express.JS"
+  ],
+  "author": "Kisakye Charles Garshom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garshom/rest-api-with-node.js-and-express.js/issues"
+  },
+  "homepage": "https://github.com/garshom/rest-api-with-node.js-and-express.js#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.5",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.11",
+    "uuid": "^3.3.2"
+  }
+}
