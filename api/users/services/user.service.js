@@ -1,4 +1,4 @@
-const {User} = require('../models/users.models');
+const User = require('../models/users.models');
 const crypto=require('crypto');
 
 
@@ -32,16 +32,46 @@ exports.createUser=async(user)=>{
         permissionLevel:user.permissionLevel
     })
 
-    let salt = await crypto.randomBytes(16).toString('base64');
-    let hash = await crypto.createHmac('sha512',salt).update(user.password).digest('base64');
-
+    let salt = crypto.randomBytes(16).toString('base64');
+    let hash = crypto.createHmac('sha512',salt).update(user.password).digest('base64');
     newUser.password=salt + "$"+hash;
+    console.log(newUser.password);
+    
     try{
+        let saveduser=await newUser.save();
+        return saveduser;
+
+    }catch(e){
+        console.log(' User service : '+ e);
+        throw Error("Error while Creating User");
+    }
+    
+        
+}
+
+exports.xxxcreateUser=async(user)=>{
+    
+    //creating a new mongose object by using the new keyword 
+    let newUser=new User({
+        firstName:user.firstName,
+        lastName:user.lastName,
+        email:user.email,
+        permissionLevel:user.permissionLevel
+    })
+
+        let salt = crypto.randomBytes(16).toString('base64');
+        let hash = crypto.createHmac('sha512',salt).update(user.password).digest('base64');
+        newUser.password=salt + "$"+hash;
+    
+    try{
+
+        
         // saving the user using mongoose
         let saveduser=await newUser.save();
         return saveduser;
 
     }catch(e){
-        console.log(e)
+        console.log(' User service : '+ e);
+        throw Error("Error while Creating User");
     }
 }

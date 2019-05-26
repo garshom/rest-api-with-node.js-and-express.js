@@ -1,7 +1,8 @@
 module.exports={
     "port":9600,
-    "appEndpoint":"http://localhost:9600/app",
-    "apiEndpoint":"http://localhost:9600/api/endpoint",
+    "host":'127.0.0.1',
+    "appEndpoint":"http://127.0.0.1:9600/app",
+    "apiEndpoint":"http://127.0.0.1:9600/api/endpoint",
     "jwt_secret_key":"Sup3r!!Z0mb13T009",
     "jwt_expiration_in_seconds":36000,
     "enviroment":"dev",

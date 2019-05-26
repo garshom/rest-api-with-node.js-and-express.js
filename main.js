@@ -3,8 +3,12 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const UsersRoutes=require('./api/routes/users.routes.config');
 
+const router = express.Router()
 
 const app=express();
+
+app.use(bodyParser.json({type: 'application/json'}));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use((req,res,next)=>{
     res.header('Access-Control-Allow-Origin', '*');
@@ -20,9 +24,8 @@ app.use((req,res,next)=>{
     }
 });
 
-app.use(bodyParser.json());
 UsersRoutes.routesConfig(app);
 
-app.listen(config.port,function(){
-    console.log('app listening at port %s',config.port);
+app.listen(config.port,config.host,function(){
+    console.log(`Server successfully started at:${config.host}:${config.port}`);
 })
