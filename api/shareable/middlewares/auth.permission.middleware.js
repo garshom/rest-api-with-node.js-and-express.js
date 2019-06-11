@@ -1,7 +1,7 @@
 const jwt=require('jsonwebtoken');
 const secret=require('../config/env.config')['jwt_secret_key'];
 
-const API_ADMIN_PERMISSION=2056;
+const API_ADMIN_PERMISSION=2056; // pending to fetch from config file and compare with token
 
 exports.minimumPermissionLevelRequired=(required_permission_level)=>{
 
@@ -11,7 +11,10 @@ exports.minimumPermissionLevelRequired=(required_permission_level)=>{
         if(user_permission_level & required_permission_level){
             return next();
         }else{
-            return res.status(403).send();
+            return res.status(403).send({
+                status:403,
+                error:'Forbidden HTTP request for User'
+            });
         }
     }
 }

@@ -2,6 +2,7 @@ const config=require('./api/shareable/config/env.config');
 const express=require('express');
 const bodyParser=require('body-parser');
 const UsersRoutes=require('./api/routes/users.routes.config');
+const AuthorizationRoutes=require('./api/authentication/authorization.routes.config');
 
 const router = express.Router()
 
@@ -23,7 +24,7 @@ app.use((req,res,next)=>{
         return next();
     }
 });
-
+AuthorizationRoutes.routesConfig(app);
 UsersRoutes.routesConfig(app);
 
 app.listen(config.port,config.host,function(){

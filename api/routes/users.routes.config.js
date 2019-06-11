@@ -5,7 +5,7 @@ const PermissionMiddleware=require('../shareable/middlewares/auth.permission.mid
 const config=require('../shareable/config/env.config');
 
 const ParamValidationMiddleware=require('../shareable/middlewares/validations/param.validation.middleware');
-const ParamValidationHandler=require('..//shareable/middlewares//validations/param.validation.handler');
+const ParamValidationHandler=require('../shareable/middlewares//validations/param.validation.handler');
 const { check, validationResult } = require('express-validator/check');
 
 const ADMIN=config.permissionLevels.API_ADMIN;
@@ -13,7 +13,6 @@ const APIUSER=config.permissionLevels.API_USER;
 const FREE=config.permissionLevels.NORMAL_USER;
 
 exports.routesConfig=function(app){
-    
     app.post('/users',[
         UserController.createUser
     ]);
@@ -22,5 +21,34 @@ exports.routesConfig=function(app){
     [ParamValidationMiddleware.createUservalidation().validateMeChecks],
     [ParamValidationHandler.createUservalidationHandler()]);
 
+    app.get('/users',[
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        UserController.listUsers
+        
+    ]);
+
+    app.get('/users/:userId',[
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        ///PermissionMiddleware.onlySameUserOrApiAdminCanDoThisAction,
+        UserController.getUserById
+    ])
+
+    app.patch('/users/:userId',[
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        ///PermissionMiddleware.onlySameUserOrApiAdminCanDoThisAction,
+        UserController.updateUser
+    ])
+
+    app.delete('/users/:userId',[
+        ValidationMiddleware.validJWTNeeded,
+        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        UserController.removeUser
+    ])
+
+
+
+
 }
-//http://127.0.0.1:9600/api/?username=Ggarshoma2019&password=Superl0ck9&confirmPassword=Superl0ck9
