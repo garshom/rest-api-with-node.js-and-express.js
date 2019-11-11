@@ -1,6 +1,8 @@
 # rest-api-with-node.js-and-express.js
-REST API with Node.js and Express.js
+REST API server with Node.js and Express.js, 
 ## Description
+
+This is a complete REST API server with JWT(jsonwebtoken) for user authentications , you can clone it and kick start your nodes.js api project.
 
 ## Setup
 
